@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class KodillaHibernateApplicationTests {
 
     @Test
-    public void contextLoads() {
+    public void contextLoad() {
+
     }
 }
