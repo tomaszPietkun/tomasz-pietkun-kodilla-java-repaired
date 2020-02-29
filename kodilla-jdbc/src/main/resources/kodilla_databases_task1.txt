@@ -1,0 +1,77 @@
+CREATE TABLE ISSUESLISTS
+(
+	ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100)
+);
+
+
+CREATE TABLE ISSUES 
+(
+	ID SERIAL PRIMARY KEY,
+	ISSUELIST_ID bigint unsigned not null,
+    SUMMARY varchar(100),
+    DESCTIPTION varchar(1024),
+    USER_ID_ASSIGNEDTO bigint unsigned not null,
+    foreign key (ISSUELIST_ID) references ISSUESLISTS(ID),
+    foreign key (ISSUELIST_ID) references USERS(ID)
+);
+
+insert into ISSUESLISTS (NAME)
+values ("ToDo");
+
+insert into ISSUESLISTS (NAME)
+values("In progress");
+
+insert into ISSUESLISTS (NAME)
+values("Done");
+
+commit;
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (1, "Make dinner", 1);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (1, "Clean dishes", 2);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (1, "Go shopping", 3);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (1, "Take dog for a walk", 4);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (1, "Tidy my flat", 5);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (2, "Pass exams", 1);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (2, "Finish bootcamp", 2);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (3, "Finish highschool", 1);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (3, "Buy new bulb", 2);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (2, "Finish DB task", 3);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (2, "Read 3 books", 4);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (2, "Watch 2 movies", 5);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (3, "Take trash out", 3);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (3, "Meet with friends", 4);
+
+insert into issues (issuelist_id, summary, user_id_assignedto)
+values (3, "Go jogging", 5);
+
+commit;
+
+select * from issues;
