@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany() {
@@ -58,6 +62,64 @@ public class CompanyDaoTestSuite {
            companyDao.deleteById(greyMatterId);
         } catch (Exception e) {
             //do nothing
+        }
+    }
+
+    @Test
+    public void testRetrieveEmployeeWithLastName() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        employeeDao.save(johnSmith);
+        int id1 = johnSmith.getId();
+        employeeDao.save(stephanieClarckson);
+        int id2 = stephanieClarckson.getId();
+        employeeDao.save(lindaKovalsky);
+        int id3 = lindaKovalsky.getId();
+
+        //When
+        List<Employee> employeesLastName = employeeDao.retrieveEmployeeWithLastName("Kovalsky");
+
+        //Then
+        try {
+            Assert.assertEquals(1, employeesLastName.size());
+        }
+        finally {
+            employeeDao.deleteById(id1);
+            employeeDao.deleteById(id2);
+            employeeDao.deleteById(id3);
+        }
+    }
+
+    @Test
+    public void retrieveCompanyNameStartingWith() {
+        //Given
+        Company company1 = new Company("Company1");
+        Company company2 = new Company("Company2");
+        Company company3 = new Company("Sony");
+
+        companyDao.save(company1);
+        int id1 = company1.getId();
+        companyDao.save(company2);
+        int id2 = company2.getId();
+        companyDao.save(company3);
+        int id3 = company3.getId();
+
+        //When
+        List<Company>companiesStartingWith = companyDao.retrieveCompanyNameStartingWith("Com%");
+
+        //Then
+        Assert.assertEquals(2, companiesStartingWith.size());
+
+        //CleanUp
+        try {
+            companyDao.deleteById(id1);
+            companyDao.deleteById(id2);
+            companyDao.deleteById(id3);
+        } catch (Exception e) {
+            //Nothing
         }
     }
 }
