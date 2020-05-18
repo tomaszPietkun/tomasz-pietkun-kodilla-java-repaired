@@ -80,7 +80,7 @@ public class CompanyDaoTestSuite {
         int id3 = lindaKovalsky.getId();
 
         //When
-        List<Employee> employeesLastName = employeeDao.retrieveEmployeeWithLastName("Kovalsky");
+        List<Employee> employeesLastName = employeeDao.findByLastname("Kovalsky");
 
         //Then
         try {
@@ -108,7 +108,7 @@ public class CompanyDaoTestSuite {
         int id3 = company3.getId();
 
         //When
-        List<Company>companiesStartingWith = companyDao.retrieveCompanyNameStartingWith("Com%");
+        List<Company>companiesStartingWith = companyDao.findByThreeCharsPrefix("Com%");
 
         //Then
         Assert.assertEquals(2, companiesStartingWith.size());
