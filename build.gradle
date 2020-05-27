@@ -1,8 +1,10 @@
+
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
     id 'java'
 }
+
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.kodilla'
 version = '0.0.1-SNAPSHOT'
@@ -14,12 +16,6 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    testImplementation('junit:junit:4.13')
-}
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-test {
-    useJUnitPlatform()
 }
