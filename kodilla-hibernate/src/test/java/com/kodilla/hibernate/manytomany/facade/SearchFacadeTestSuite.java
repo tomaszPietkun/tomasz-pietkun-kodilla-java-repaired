@@ -26,14 +26,14 @@ public class SearchFacadeTestSuite {
     @Test
     public void testFindCompanies() {
         //given
-        Company c1 = new Company("Company 1");
-        Company c2 = new Company("Company 2");
-        Company c3 = new Company("Sonyr");
+        Company company1 = new Company("Company 1");
+        Company company2 = new Company("Company 2");
+        Company company3 = new Company("Apple");
 
         //when
-        companyDao.save(c1);
-        companyDao.save(c2);
-        companyDao.save(c3);
+        companyDao.save(company1);
+        companyDao.save(company2);
+        companyDao.save(company3);
         List<Company> companies = searchFacade.findCompanies("Com");
 
         //then
@@ -41,9 +41,9 @@ public class SearchFacadeTestSuite {
 
         //cleanup
         try {
-            companyDao.delete(c1);
-            companyDao.delete(c2);
-            companyDao.delete(c3);
+            companyDao.delete(company1);
+            companyDao.delete(company2);
+            companyDao.delete(company3);
         } catch (Exception e) {
             //do nothing
         }
