@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class OrderWatcher {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderWatcher.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(OrderWatcher.class);
 
     @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
     public void logEvent() {
