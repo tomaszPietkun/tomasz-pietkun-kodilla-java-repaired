@@ -4,11 +4,12 @@ import org.junit.*;
 import com.kodilla.testing.forum.statistics.CalculateStatistics;
 import com.kodilla.testing.forum.statistics.Statistics;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CalculateStatisticsTestSuite {
     private static int testCounter = 0;
